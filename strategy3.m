@@ -53,8 +53,8 @@ J_store=sortrows(J_store,6,'descend');
 star_ID(1,10:11) = [J_store(1,1) J_store(3,1)]; % Solutions available from J_store
 % idx_ms=[9;16;24]; % rows 9,16,24 represent best compromise between max merit value and min time of arrival so that the settling pods have enough time to breed
 idx_ms=[283;319;207]; % rows 283,319,207 represent min time of arrival so that the settling pods have enough time to breed
-fileID = fopen('strategy2.txt','w');
-fprintf(fileID,'%s','strategy2');
+fileID = fopen('strategy3.txt','w');
+fprintf(fileID,'%s','strategy3');
 
 settlement_tree_sp=[];
 settlement_tree_ms=[];
@@ -93,7 +93,7 @@ for mothership_id=-1:-1:-3
             idx = J_store(idx_ms(-mothership_id),1);  % Targets queried from good Sol transfers from J_store
             is_bad_solution =0;
         else            
-            [idx, t_departure,t_arrival,is_bad_solution,x0_departure] = find_n_best_stars_strategy2(x0,1,star_ID, t_min_departure,1,inf,J_merit,delV_max,delV_used,x,y,z,vx,vy,vz,star_data); % Mothership position propagated 1.5 myr since the previous star interception
+            [idx, t_departure,t_arrival,is_bad_solution,x0_departure] = find_grid_stars(x0,1,star_ID, t_min_departure,1,inf,J_merit,delV_max,delV_used,x,y,z,vx,vy,vz,star_data,star_target_grids); % Mothership position propagated 1.5 myr since the previous star interception
             r0=x0_departure(1:3);v0_guess= x0_departure(4:6);
         end
 
@@ -115,7 +115,7 @@ for mothership_id=-1:-1:-3
         if delv_transfer * kpcpmyr2kms > 200 || delv_rendezvous * kpcpmyr2kms > 300 || is_bad_solution ~= 0 % If Mothership initial impulse exceeds  200 km/s or setlling pod impulse exceeds 300 km/s
 %             disp(['no solution at tof (myr):' num2str(tof)])
             num_violations=num_violations+1;
-            if num_violations>20
+            if num_violations>10
                 break
             end
         else
@@ -233,7 +233,7 @@ while(gen<13)
                 
         x0=[x(ID_jk+1,t_min_departure/0.5+1),y(ID_jk+1,t_min_departure/0.5+1),z(ID_jk+1,t_min_departure/0.5+1),vx(ID_jk+1,t_min_departure/0.5+1),vy(ID_jk+1,t_min_departure/0.5+1),vz(ID_jk+1,t_min_departure/0.5+1)]';
         
-        [idx_vec, t_departure,t_arrival,is_bad_solution, ~] = find_n_best_stars_strategy2(x0,3,star_ID, t_min_departure,2,ID_jk,J_merit,delV_max,delV_used,x,y,z,vx,vy,vz,star_data);
+        [idx_vec, t_departure,t_arrival,is_bad_solution, ~] = find_grid_stars(x0,3,star_ID, t_min_departure,2,ID_jk,J_merit,delV_max,delV_used,x,y,z,vx,vy,vz,star_data,star_target_grids);
         
         star_positions_target=[x(2:end,i_arrival),y(2:end,i_arrival),z(2:end,i_arrival)]; % Except sun, all position values for stars at t=tof
         star_velocities_target=[vx(2:end,i_arrival),vy(2:end,i_arrival),vz(2:end,i_arrival)]; % Except sun, all position values for stars at t=tof
@@ -278,14 +278,13 @@ while(gen<13)
                 if norm(dv1) * kpcpmyr2kms > 175 || norm(dv2) * kpcpmyr2kms > 175
                     
                     num_constraint_violation = num_constraint_violation+1;                    
-                    if num_constraint_violation> 40 || t_arrival_temp>89.5
+                    if num_constraint_violation> 20 || t_arrival_temp>89.5
                         break
                     end
                     
                 else
                     
                     % Successful transfer
-                    error_J_term_prev = error_J_term;
                     delV_used = delV_used + delv_transfer * kpcpmyr2kms + delv_rendezvous * kpcpmyr2kms; % km/s
                     delV_max = delV_max + 400; % km/s
                     error_J_term = J_N_r_theta(star_ID(star_ID~=0),star_data);
@@ -293,7 +292,7 @@ while(gen<13)
                     
                     check_star = 1-sum(star_ID(gen+1,:)==idx); % Goes to 1 if idx is a new unique star in the current generation selection
                     
-                    if check_star ==1 %&& error_J_term >= error_J_term_prev
+                    if check_star ==1
                         star_ID(gen+1,(j-1)*3+l)=idx;
                         % Settlement Pod line
                         % Write the actions in the txt solution file.
