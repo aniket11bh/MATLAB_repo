@@ -1,9 +1,39 @@
-<mxfile host="app.diagrams.net" modified="2020-08-05T19:14:34.588Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15" etag="idPPItCUWumct7HbGiBO" version="13.5.8" type="github">
+<mxfile host="app.diagrams.net" modified="2020-08-05T19:26:38.954Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15" etag="5txyc7epG53jhfBI8w2M" version="13.5.8" type="github">
   <diagram id="NzXpEdFFuoIxbyrC_7Z0" name="Fast ship">
-    <mxGraphModel dx="946" dy="725" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="541" dy="414" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="RjcsMFj2n8ltg0jni-J6-4" value="" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="450" y="235" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="RjcsMFj2n8ltg0jni-J6-7" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.partConcEllipse;startAngle=0.23313206553553417;endAngle=0.4361424533275538;arcWidth=0.38;dashed=1;gradientDirection=south;fillColor=#D9D9D9;" vertex="1" parent="1">
+          <mxGeometry x="220" y="30" width="350" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="RjcsMFj2n8ltg0jni-J6-12" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.002;entryY=0.478;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="RjcsMFj2n8ltg0jni-J6-10" target="RjcsMFj2n8ltg0jni-J6-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="471" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RjcsMFj2n8ltg0jni-J6-14" value="rmax" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="RjcsMFj2n8ltg0jni-J6-12">
+          <mxGeometry x="-0.3647" relative="1" as="geometry">
+            <mxPoint x="2.2" y="-13.83" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RjcsMFj2n8ltg0jni-J6-13" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.657;entryY=0.761;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="RjcsMFj2n8ltg0jni-J6-10" target="RjcsMFj2n8ltg0jni-J6-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RjcsMFj2n8ltg0jni-J6-15" value="rmin" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="RjcsMFj2n8ltg0jni-J6-13">
+          <mxGeometry x="-0.2021" relative="1" as="geometry">
+            <mxPoint x="-12.44" y="16.87" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RjcsMFj2n8ltg0jni-J6-10" value="" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="392.5" y="190" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="RjcsMFj2n8ltg0jni-J6-16" value="Sol" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="220" width="30" height="20" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
